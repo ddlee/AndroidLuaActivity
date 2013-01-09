@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	  package="com.example.luaactivity"
+	  android:versionCode="1"
+	  android:versionName="1.0">
+
+  <uses-sdk android:minSdkVersion="9"/>
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.CAMERA"/>
+  <uses-permission android:name="android.permission.FLASHLIGHT"/>
+  <uses-permission android:name="android.permission.VIBRATE"/>
+
+  <uses-feature android:name="android.hardware.camera"/>
+  
+  <application android:icon="@drawable/icon"
+	       android:label="@string/app_name"
+	       android:hasCode="true">
+
+    <activity android:name="android.app.NativeActivity"
+              android:label="@string/app_name"
+              android:configChanges="orientation|keyboardHidden">
+      
+      <!-- Tell NativeActivity the name of our .so -->
+      <meta-data android:name="android.app.lib_name"
+		 android:value="lua-activity" />
+
+      <intent-filter>
+	<action android:name="android.intent.action.MAIN" />
+	<category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+  
+  </application>
+  
+</manifest> 
