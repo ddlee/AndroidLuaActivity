@@ -37,7 +37,7 @@ local function onNativeWindowCreated(window)
    eglObj:ChooseConfig({SURFACE_TYPE=egl.WINDOW_BIT,
                         RED_SIZE=8, GREEN_SIZE=8, BLUE_SIZE=8});
    eglObj:CreateSurface(window);
-   w,h = eglObj:QuerySurfaceSize();
+   width, height = eglObj:QuerySurfaceSize();
 
    if (fReshape) then
       fReshape(width, height);
