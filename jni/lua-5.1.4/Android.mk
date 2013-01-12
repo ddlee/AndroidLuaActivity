@@ -1,0 +1,48 @@
+LOCAL_PATH := $(call my-dir)
+
+# Core Lua library
+# compiled as static library to embed in liblua-activity.so
+include $(CLEAR_VARS)
+LOCAL_MODULE := luacore-static
+LOCAL_SRC_FILES := \
+	src/lapi.c \
+	src/lauxlib.c \
+	src/lbaselib.c \
+	src/lcode.c \
+	src/ldblib.c \
+	src/ldebug.c \
+	src/ldo.c \
+	src/ldump.c \
+	src/lfunc.c \
+	src/lgc.c \
+	src/linit.c \
+	src/liolib.c \
+	src/llex.c \
+	src/lmathlib.c \
+	src/lmem.c \
+	src/loadlib.c \
+	src/lobject.c \
+	src/lopcodes.c \
+	src/loslib.c \
+	src/lparser.c \
+	src/lstate.c \
+	src/lstring.c \
+	src/lstrlib.c \
+	src/ltable.c \
+	src/ltablib.c \
+	src/ltm.c \
+	src/lundump.c \
+	src/lvm.c \
+	src/lzio.c \
+	src/print.c
+
+# Auxiliary lua user defined file
+# LOCAL_SRC_FILES += luauser.c
+# LOCAL_CFLAGS := -DLUA_DL_DLOPEN -DLUA_USER_H='"luauser.h"'
+
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/src
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/include
+LOCAL_CFLAGS := -DLUA_DL_DLOPEN
+LOCAL_LDLIBS := -ldl -llog
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/include
+include $(BUILD_STATIC_LIBRARY)
