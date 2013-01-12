@@ -1,0 +1,4 @@
+This repository contains the Android NDK code (no Java)
+for a Native Activity project with a fully-embedded Lua
+environment.
+

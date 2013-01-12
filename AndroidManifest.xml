@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	  package="com.example.luaactivity"
+	  package="org.ddlee.luaactivity"
 	  android:versionCode="1"
 	  android:versionName="1.0">
 
   <uses-sdk android:minSdkVersion="9"/>
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <uses-permission android:name="android.permission.INTERNET"/>
-  <uses-permission android:name="android.permission.CAMERA"/>
-  <uses-permission android:name="android.permission.FLASHLIGHT"/>
   <uses-permission android:name="android.permission.VIBRATE"/>
 
-  <uses-feature android:name="android.hardware.camera"/>
-  
   <application android:icon="@drawable/icon"
 	       android:label="@string/app_name"
-	       android:hasCode="true">
+	       android:hasCode="false">
 
     <activity android:name="android.app.NativeActivity"
               android:label="@string/app_name"
