@@ -57,11 +57,11 @@ function tick(self, ball)
       end
    elseif (not d and u) then -- left
       if (self.col *WIDTH - ball.x - 1 < 0) then
-	 f.y = f.y + self.col * WIDTH - ball.x - 1;
+	 f.x = f.x + self.col * WIDTH - ball.x - 1;
       end
    else -- bottom
       if (self.row *HEIGHT + HEIGHT - ball.y + 1 > 0) then
-	 f.y = self.row * HEIGHT + HEIGHT - ball.y + 1;
+	 f.y = f.y + self.row * HEIGHT + HEIGHT - ball.y + 1;
       end
    end
 

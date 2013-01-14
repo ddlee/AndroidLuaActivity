@@ -4,7 +4,6 @@ require('Wall');
 require('Ball');
 require('Paddle');
 
-
 local mt = getfenv();
 mt.__index = mt;
 

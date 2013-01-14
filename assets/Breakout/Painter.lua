@@ -1,5 +1,6 @@
 module(..., package.seeall);
 
+require('math');
 require('gles1');
 require('carray');
 
@@ -20,11 +21,11 @@ function new()
 end
 
 
-local v8 = carray.new("float",
-		      {0, 0,
-		       1, 0,
-		       0, 1,
-		       1, 1});
+local vRect = carray.new("float",
+			 {0, 0,
+			  1, 0,
+			  0, 1,
+			  1, 1});
 
 function bar(self, x1, y1, x2, y2)
    --[[
@@ -34,14 +35,25 @@ function bar(self, x1, y1, x2, y2)
 			 x1, y2,
 			 x2, y2});
    --]]
-   v8[1] = x1; v8[2] = y1;
-   v8[3] = x2; v8[4] = y1;
-   v8[5] = x1; v8[6] = y2;
-   v8[7] = x2; v8[8] = y2;   
+   gl.PushMatrix();
+   gl.Translatef(x1, y1, 0);
+   gl.Scalef(x2-x1, y2-y1, 0);
    gl.EnableClientState(gl.VERTEX_ARRAY);
-   gl.VertexPointer(2, gl.FLOAT, 0, carray.pointer(v8));
+   gl.VertexPointer(2, gl.FLOAT, 0, carray.pointer(vRect));
    gl.DrawArrays(gl.TRIANGLE_STRIP, 0, 4);
    gl.DisableClientState(gl.VERTEX_ARRAY);
+   gl.PopMatrix();
+end
+
+local nCircle = 90;
+local vCircle = carray.new("float", 2*(nCircle+1));
+vCircle[1] = 0;
+vCircle[2] = 0;
+for i = 1,nCircle do
+   local k = 2*i+1;
+   local a = 2*math.pi*(i-1)/(nCircle-1);
+   vCircle[k] = math.cos(a);
+   vCircle[k+1] = math.sin(a);
 end
 
 function ball(self, x, y)
@@ -52,14 +64,14 @@ function ball(self, x, y)
 			 x-3, y,
 			 x, y-3});
    --]]
-   v8[1] = x+3; v8[2] = y;
-   v8[3] = x;   v8[4] = y+3;
-   v8[5] = x-3; v8[6] = y;
-   v8[7] = x;   v8[8] = y-3;   
+   gl.PushMatrix();
+   gl.Translatef(x, y, 0);
+   gl.Scalef(3, 3, 0);
    gl.EnableClientState(gl.VERTEX_ARRAY);
-   gl.VertexPointer(2, gl.FLOAT, 0, carray.pointer(v8));
-   gl.DrawArrays(gl.TRIANGLE_FAN, 0, 4);
+   gl.VertexPointer(2, gl.FLOAT, 0, carray.pointer(vCircle));
+   gl.DrawArrays(gl.TRIANGLE_FAN, 0, nCircle+1);
    gl.DisableClientState(gl.VERTEX_ARRAY);
+   gl.PopMatrix();
 end
 
 colorNames = {"yellow", "green", "orange", "red", "white", "black"};
